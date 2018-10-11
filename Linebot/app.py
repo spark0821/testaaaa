@@ -46,9 +46,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
+    app.logger.info("Request body: " + message)
+    with open('somefile.txt', 'w') as the_file:
+        the_file.write(message)
     line_bot_api.reply_message(event.reply_token, message)
-    f = open('text.txt','w')
-    f.write(message)
     
 
 
