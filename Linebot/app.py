@@ -47,19 +47,9 @@ def callback():
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
-   
-    # Create cursor
-    cur = mysql.connection.cursor()
+    f = open('text.txt','w')
+    f.write(message)
     
-    # Execute query
-    cur.execute("INSERT INTO MSG(message) VALUES(%s)"
-                ,(message)) 
-    
-    # Commit to DB
-    mysql.connection.commit()
-    
-    # Close connection
-    cur.close()
 
 
 
